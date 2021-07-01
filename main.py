@@ -31,7 +31,7 @@ def copy_tree(dir1, dir2):
         shutil.copy(src, dest)
         print(src+"copied to"+dest)
 
-    for i in comparison.common_dirs:
+#     for i in comparison.common_dirs:
         new_dir1 = dir1 + "/" + i
         new_dir2 = dir2 + "/" + i
         copy_tree(new_dir1, new_dir2)

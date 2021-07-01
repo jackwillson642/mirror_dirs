@@ -12,8 +12,8 @@ for i in all_dirs_list:
         dev_dirs_list.append(i)
 
 
+# A function that will recursively walk through a directory structure and copy only the new or modified files
 def copy_tree(dir1, dir2):
-
     comparison = dircmp(dir1, dir2)
     for i in comparison.left_only:
         src = dir1 +"/"+ i
@@ -36,6 +36,7 @@ def copy_tree(dir1, dir2):
         new_dir2 = dir2 + "/" + i
         copy_tree(new_dir1, new_dir2)
 
+# calling of copy_tree function
 for dev_dir in dev_dirs_list:
     src_path = "./" + dev_dir
     dest_path = "./AllDev/" + dev_dir

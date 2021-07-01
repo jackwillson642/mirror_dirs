@@ -11,6 +11,11 @@ for i in all_dirs_list:
     if (i[0] == "D") and (i[1] == "e") and (i[2] == "v"):
         dev_dirs_list.append(i)
 
+for dev_dir in dev_dirs_list:
+    if(not os.path.exists("./AllDev/" + dev_dir)):
+        os.makedirs("./AllDev/" + dev_dir)
+    print("AllDev directory not found\nAllDev directory created")
+
 
 # A function that will recursively walk through a directory structure and copy only the new or modified files
 def copy_tree(dir1, dir2):

@@ -17,9 +17,11 @@ for i in all_dirs_list:
     if (i[0] == "D") and (i[1] == "e") and (i[2] == "v"):
         dev_dirs_list.append(i)
 
+restricted_dir = "./AllDev/"
+
 for dev_dir in dev_dirs_list:
-    if(not os.path.exists("./AllDev/" + dev_dir)):
-        dirpath = "./AllDev/" + dev_dir
+    if(not os.path.exists(restricted_dir + dev_dir)):
+        dirpath = restricted_dir + dev_dir
         os.makedirs(dirpath)
         dirname = os.path.split(dirpath)[1]
         print(dirname + " directory not found")
@@ -57,7 +59,7 @@ def copy_tree(dir1, dir2):
 # calling of copy_tree function
 for dev_dir in dev_dirs_list:
     src_path = "./" + dev_dir
-    dest_path = "./AllDev/" + dev_dir
+    dest_path = restricted_dir + dev_dir
     copy_tree(src_path, dest_path)
 
 # input()  # This function keeps the output window open in the Windows operating system.

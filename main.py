@@ -1,3 +1,9 @@
+##########################################
+# This script is designed to back up a set of directories of the format:
+# "Dev*", Where * represents anything(usually a number).
+# The backup is kept in a folder named AllDev.
+##########################################
+
 import shutil
 import os
 from filecmp import dircmp
@@ -13,8 +19,12 @@ for i in all_dirs_list:
 
 for dev_dir in dev_dirs_list:
     if(not os.path.exists("./AllDev/" + dev_dir)):
-        os.makedirs("./AllDev/" + dev_dir)
-    print("AllDev directory not found\nAllDev directory created")
+        dirpath = "./AllDev/" + dev_dir
+        os.makedirs(dirpath)
+        dirname = os.path.split(dirpath)[1]
+        print(dirname + " directory not found")
+        print(dirname  + " directory created")
+print("\n")  # 2 line gap
 
 
 # A function that will recursively walk through a directory structure and copy only the new or modified files
@@ -25,16 +35,19 @@ def copy_tree(dir1, dir2):
         dest = dir2 +"/"+ i
         if(os.path.isdir(src)):
             shutil.copytree(src, dest, dirs_exist_ok=True)
-            print(src+" Copied to "+dest)
+            dirname = os.path.split(src)[1]
+            print(dirname+" directory backed up")
         else:
             shutil.copy(src, dest)
-            print(src+" copied To "+dest)
+            filename = os.path.split(src)[1]
+            print(filename+" file backed up")
 
     for i in comparison.diff_files:
         src = dir1 +"/"+ i
         dest = dir2 
         shutil.copy(src, dest)
-        print(src+"copied to"+dest)
+        filename = os.path.split(src)[1]
+        print(filename+" file updated")
 
 #     for i in comparison.common_dirs:
         new_dir1 = dir1 + "/" + i
@@ -46,3 +59,5 @@ for dev_dir in dev_dirs_list:
     src_path = "./" + dev_dir
     dest_path = "./AllDev/" + dev_dir
     copy_tree(src_path, dest_path)
+
+# input()  # This function keeps the output window open in the Windows operating system.

@@ -19,6 +19,7 @@ for i in all_dirs_list:
 
 restricted_dir = "./AllDev/"
 
+# This block of code creates AllDev and Dev* directories if absent
 for dev_dir in dev_dirs_list:
     if(not os.path.exists(restricted_dir + dev_dir)):
         dirpath = restricted_dir + dev_dir
@@ -51,7 +52,7 @@ def copy_tree(dir1, dir2):
         filename = os.path.split(src)[1]
         print(filename+" file updated")
 
-#     for i in comparison.common_dirs:
+    for i in comparison.common_dirs:
         new_dir1 = dir1 + "/" + i
         new_dir2 = dir2 + "/" + i
         copy_tree(new_dir1, new_dir2)
